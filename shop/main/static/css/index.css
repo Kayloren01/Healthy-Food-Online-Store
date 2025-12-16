@@ -1,0 +1,49 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 20px;
+    background-color: #f9f9f9;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    width: 285px;
+    height: 400px;
+    background-color: aqua;
+    border-radius: 12px;
+}
+.item img{
+    flex-grow: 3;
+}
+.item > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* gap: 4px; */
+    flex-grow: 10;
+
+    background-color: white;
+    padding: 12px 16px 8px 16px;
+}
+
+.item-name{
+    margin-bottom: 4px;
+}
+
+.item-quantity{
+    margin-bottom: 16px;
+}
+
+.item-price{}
+.item-button{
+    width: 253px;
+    height: 48px;
+    background-color: #179c49;
+    border-radius: 12px;
+}
+
+.item-button img{
+    width: 18px;
+    height: 18px;
+}

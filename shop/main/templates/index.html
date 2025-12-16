@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Document{% endblock title %}
+
+{% block content %}
+    <ul class="list">
+        <li class="item">
+            <img src="{% static "img/wide.avif" %}" alt="">
+            <div>
+                <div>
+                <h5 class="item-name">ITEM NAME</h5>
+                <p class="item-quantity">ITEM QUANTITY</p>
+                <p class="item-price">ITEM PRICE</p>
+                </div>
+                <button class="item-button">
+                    <img src="{% static "img/basket.svg" %}" alt="">
+                    <span>В корзину</span>
+                </button>
+            </div>
+        </li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+{% endblock content %}

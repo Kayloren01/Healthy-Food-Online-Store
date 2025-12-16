@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static "css/base.css" %}">
+        <link rel="stylesheet" href="{% static "css/index.css" %}">
+    
+
+    </head>
+    <body>
+        <header>
+            <div class="wrapper">
+                <a href="">
+                    <img src="{% static "img/wide.avif" %}" alt class="header-logo">
+                </a>
+                <button class="header-search"></button>
+                
+                <a href class="cart">
+                    <img src="{% static "img/basket.svg" %}" alt class="cart-logo">
+                </a>
+                <a href class="login">
+                    <img src="{% static "img/person.svg" %}" alt class="login-img">
+                    <span class="login-text">Войти</span>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div class="wrapper">
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
+
+        <footer>
+            <div class="wrapper">
+                <img src="{% static "img/wide.avif" %}" alt class="footer-logo">
+                
+
+                <div>
+                    <div>
+                    <a href class="footer-contact-link">Контакты</a>
+                    <a href class="footer-contact-link">О нас</a>
+                    </div>
+                    <div>
+                    <a href class="footer-messenger">
+                        <img src="{% static "img/VK Logo.svg"%}" alt class="footer-img1">
+                    </a>
+                    <a href class="footer-messenger">
+                        <img src="{% static "img/tg.svg" %}" alt class="footer-img2">
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
