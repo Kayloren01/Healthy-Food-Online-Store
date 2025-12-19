@@ -1,13 +1,58 @@
+@font-face {
+    font-family: "Euclid";
+    src: url("../fonts/Euclid\ Flex/euclid.ttf") format("truetype");
+}
+
+.weight_500 {
+    font-weight: 500;
+}
+
+.grey {
+    color: #707070;
+}
+
+.black {
+    color: #1A1A1A;
+}
+
+.white {
+    color: white;
+}
+
+.text_14px {
+    font-size: 1.4rem;
+}
+
+.text_12px {
+    font-size: 1.2rem;
+}
+
+.text_16px {
+    font-size: 1.6rem;
+}
+
+:root {}
+
 * {
     list-style: none;
     margin: 0;
     padding: 0;
     text-decoration: none;
+    font-family: 'Euclid Circular A', sans-serif;
+    font-size: 62.5%;
+    font-weight: 400;
+    box-sizing: border-box;
 }
+
 
 .wrapper {
     max-width: 1260px;
     margin: 0 auto;
+}
+
+header {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
 }
 
 header .wrapper {
@@ -16,6 +61,11 @@ header .wrapper {
     justify-content: space-between;
     align-items: center;
 
+}
+
+.header-link {
+    width: 132px;
+    height: 40px;
 }
 
 .header-logo {
@@ -34,10 +84,20 @@ header .wrapper {
     height: 52px;
 }
 
+.cart {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 42px;
+    height: 52px;
+}
 
 .login {
     display: inline-flex;
+    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
     width: 42px;
     height: 52px;
 }
@@ -52,36 +112,45 @@ main {
 }
 
 
-footer .wrapper {
+footer {
     background-color: #f5f5f5;
 }
 
-footer .wrapper>div {
+.footer-line {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: 10px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.footer-line div {
+    display: flex;
+    gap: 10px
 }
 
 .footer-logo {
+    display: block;
     width: 120px;
     height: 33px;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 
-.footer-img1 {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+
+.footer-contact-link1 {
+    margin-right: 10px;
 }
 
-.footer-img2 {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
+
 
 .footer-messenger {
+    display: block;
+    background-color: white;
+    border-radius: 15px;
     width: 40px;
     height: 40px;
+    padding: 8px;
 }
