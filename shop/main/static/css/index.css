@@ -1,16 +1,17 @@
 .list {
-    padding: 0 10px;
+    padding:  10px;
     width: 1260px;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    row-gap: 24px;
+    justify-content: space-between;
     background-color: #f9f9f9;
 }
 
 .item {
     display: flex;
     flex-direction: column;
-    width: 285px;
+    width: 282px;
     height: 391px;
     background-color: aqua;
     border-radius: 12px;
