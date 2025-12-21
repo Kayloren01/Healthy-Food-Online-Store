@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Document{% endblock title %}
+{% block title %}
+    {% if category %}{{category.name}}{% else %}Товары{% endif %}
+{% endblock title %}
 
 {% block content %}
     <ul class="list">
+        {% for product in  products%}
         <li class="item">
-            <img src="{% static "img/wide.avif" %}" alt="">
+            <a href="{{product.get_absolute_url}}" class='item-img-link'>
+                <img src="{{product.image.url}}" alt="{{product.name}}">
+            </a>
             <div>
                 <div>
-                <h5 class="item-name text_16px black">ITEM NAME</h5>
+                <a href="{{product.get_absolute_url}}" >
+                    <h5 class="item-name text_16px black">{{product.name}}</h5>
+                </a>
                 <p class="item-quantity text_14px grey">ITEM QUANTITY</p>
-                <p class="item-price text_16px black">ITEM PRICE</p>
+                <p class="item-price text_16px black">{{product.price}} руб</p>
                 </div>
                 <button class="item-button">
                     {% comment %} <img src="{% static "img/cart2.svg" %}" alt=""> {% endcomment %}
@@ -20,12 +27,7 @@
                 </button>
             </div>
         </li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
-        <li class="item"></li>
+        {% endfor %}
+       
     </ul>
 {% endblock content %}
