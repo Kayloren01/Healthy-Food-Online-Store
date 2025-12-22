@@ -1,0 +1,40 @@
+.block {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.part1 {
+    /* width: 50%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.part2 {
+    /* width: 530px;
+    height: 300px; */
+}
+
+.item-name {
+    margin-bottom: 10px;
+}
+
+.item-quantity {
+    margin-bottom: 10px;
+}
+
+.item-price {
+    margin-bottom: 20px;
+}
+
+.item-button {
+    width: 160px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    align-items: center;
+    background-color: #179c49;
+    border-radius: 12px;
+}
