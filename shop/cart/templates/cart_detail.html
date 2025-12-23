@@ -60,25 +60,26 @@
         <div class='part2'>
             <h2 class='text1 text_24px black weight_500'>Корзина</h2>
             <div class='block5'>
-                <p class='text_14px weight_500 black'>кол-во (подставить) товара</p>
+                <p class='text_14px weight_500 black'>? шт</p>
                 <button ><span class='text_14px grey'>Очистить корзину</span> <svg  fill='#707070'width='16' height='16' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="7d1f1736-119e-450d-9d5d-85535ad17ef3" viewBox="0 0 24 24">
         <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"></path>
     </symbol><use href="#7d1f1736-119e-450d-9d5d-85535ad17ef3"></use></svg></button>
             </div>
             <ul class='list'>
+                {% for item in cart %}
                     <li class='el'>
                         <a href="" class='el_link'>
                             <img src="/static/img/wide.avif" alt="" class='link_img'>
                         </a>
                         <div class='el_block'>
                             <div class='underblock1'>
-                                <p class='text_14px black el_text'>Название подставить Название подставить Название подставить</p>
+                                <p class='text_14px black el_text'>{{item.product.name}}</p>
                                 <button>
                                     <svg class="VV_ModalCloser__CloserImg" fill='#707070'width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">                                             <path d="M10 11.2292L5.97918 15.25C5.81251 15.4167 5.61112 15.4965 5.37501 15.4896C5.1389 15.4826 4.93751 15.3958 4.77084 15.2292C4.60418 15.0625 4.52084 14.8576 4.52084 14.6146C4.52084 14.3715 4.60418 14.1667 4.77084 14L8.77084 10L4.75001 5.97917C4.58334 5.8125 4.50348 5.60764 4.51043 5.36458C4.51737 5.12153 4.60418 4.91667 4.77084 4.75C4.93751 4.58333 5.14237 4.5 5.38543 4.5C5.62848 4.5 5.83334 4.58333 6.00001 4.75L10 8.77083L14.0208 4.75C14.1875 4.58333 14.3924 4.5 14.6354 4.5C14.8785 4.5 15.0833 4.58333 15.25 4.75C15.4167 4.91667 15.5 5.12153 15.5 5.36458C15.5 5.60764 15.4167 5.8125 15.25 5.97917L11.2292 10L15.25 14.0208C15.4167 14.1875 15.5 14.3889 15.5 14.625C15.5 14.8611 15.4167 15.0625 15.25 15.2292C15.0833 15.3958 14.8785 15.4792 14.6354 15.4792C14.3924 15.4792 14.1875 15.3958 14.0208 15.2292L10 11.2292Z" ></path> </svg>
                                 </button>
                             </div>
                             <div class='underblock2'>
-                                <p class='text_16px full_black'>Цена подставить</p>
+                                <p class='text_16px full_black'>{{item.price}}</p>
                                 <div class='selector'>
                                     <button>
                                         {% comment %} <svg width='20' height='20' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="7d1f1736-119e-450d-9d5d-85535ad17ef3" viewBox="0 0 24 24">
@@ -87,8 +88,8 @@
                                         <svg width="13" height="12" viewBox="0 0 13 12" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M12 6L1 6" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
                                     </button>
                                     <div>
-                                        <p class='text_14px weight_500 white'>1 шт*</p>
-                                        <p class='text_10px' style="color:#BCBCC3">104р *</p>
+                                        <p class='text_14px weight_500 white'>{{item.update_quantity_form.quantity}}</p>
+                                        <p class='text_10px' style="color:#BCBCC3">{{item.total_price}}</p>
                                     </div>
                                     <button>
                                         <svg width="13" height="14" viewBox="0 0 13 14" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M6.5 1.5V12.5" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                     <path d="M12 7L1 7" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                 </svg>
@@ -97,7 +98,7 @@
                             </div>
                         </div>
                     </li>
-                    
+                {% endfor %}
                 </ul>
         </div>
     </div>

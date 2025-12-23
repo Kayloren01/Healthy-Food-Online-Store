@@ -21,12 +21,16 @@
                 <p class="item-quantity text_14px grey">ITEM QUANTITY</p>
                 <p class="item-price text_16px black">{{product.price}} руб</p>
                 </div>
-                <button class="item-button">
-                    {% comment %} <img src="{% static "img/cart2.svg" %}" alt=""> {% endcomment %}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="18px" height="18px"viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7.18 13.534 6.167 7.966h12.216l-2.088 5.568zM4.295 2c.598 0 1.108.432 1.206 1.021l.455 2.729h13.493a1.477 1.477 0 0 1 1.383 1.996L18.19 14.79a1.48 1.48 0 0 1-1.383.959H5.427a.116.116 0 0 1-.114-.095L3.093 3.44C2.956 2.69 3.533 2 4.295 2M15.96 22a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75m-8.75 0a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75" clip-rule="evenodd"/></symbol><use href="#a"/></svg>
-                    
-                    <span class="text_16px white">В корзину</span>
-                </button>
+                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <button class="item-button" type="submit">
+                        {% comment %} <img src="{% static "img/cart2.svg" %}" alt=""> {% endcomment %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="18px" height="18px"viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7.18 13.534 6.167 7.966h12.216l-2.088 5.568zM4.295 2c.598 0 1.108.432 1.206 1.021l.455 2.729h13.493a1.477 1.477 0 0 1 1.383 1.996L18.19 14.79a1.48 1.48 0 0 1-1.383.959H5.427a.116.116 0 0 1-.114-.095L3.093 3.44C2.956 2.69 3.533 2 4.295 2M15.96 22a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75m-8.75 0a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75" clip-rule="evenodd"/></symbol><use href="#a"/></svg>
+                        
+                        <span class="text_16px white">В корзину</span>
+                    </button>
+                </form>
             </div>
         </li>
         {% endfor %}
