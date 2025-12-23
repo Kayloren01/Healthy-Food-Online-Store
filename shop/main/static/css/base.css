@@ -7,11 +7,15 @@
 .grey {
     color: #707070;
 }
-
+.full_black{
+    color: black;
+}
 .black {
     color: #1A1A1A;
 }
-
+.green{
+    color: #179C49;
+}
 .white {
     color: white;
 }
@@ -24,6 +28,9 @@
     font-weight: 700;
 }
 
+.text_10px {
+    font-size: 1.0rem;
+}
 .text_12px {
     font-size: 1.2rem;
 }
@@ -34,6 +41,12 @@
 
 .text_16px {
     font-size: 1.6rem;
+}
+.text_18px {
+    font-size: 1.8rem;
+}
+.text_20px{
+    font-size: 2.0rem;
 }
 .text_24px{
     font-size: 2.4rem;
