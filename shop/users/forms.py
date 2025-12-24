@@ -19,9 +19,11 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.TextInput(attrs={'class': 'input-register form-control', 'placeholder': 'Имя'})
     )
     last_name = forms.CharField(
-        required=True,
+        required=False,
         max_length=50,
-        widget=forms.TextInput(attrs={'class': 'input-register form-control', 'placeholder': 'Your last name'})
+        widget=forms.TextInput(attrs={'class': 'input-register form-control', 'placeholder': 'Your last name'}
+                               ),
+                               
     )
     password1 = forms.CharField(
         required=True,
@@ -32,7 +34,7 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'input-register form-control', 'placeholder': 'Повторите пароль'})
     )
     marketing_consent1 = forms.BooleanField(
-        required=False,
+        required=True,
         label="Соглашаюсь получать новости и специальные предложения",
         widget=forms.CheckboxInput(attrs={'class': 'checkbox-input-register'})
     )
@@ -69,7 +71,7 @@ class CustomUserLoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={'autofocus': True, 'class': 'input-register form-control', 'placeholder': 'Email'})
     )
     password = forms.CharField(
-        label='Password',
+        label='Пароль',
         widget=forms.PasswordInput(attrs={'class': 'input-register form-control', 'placeholder': 'Пароль'})
     )
 
