@@ -24,6 +24,14 @@ def cart_remove(request, product_id):
     cart.remove(product)
     return redirect('cart:cart_detail')
 
+@require_POST
+def all_remove(request):
+    cart = Cart(request)
+    for item in cart:
+        print(item)
+        cart.remove(item['product'])
+    return redirect('cart:cart_detail')
+
 
 def cart_detail(request):
     cart = Cart(request)

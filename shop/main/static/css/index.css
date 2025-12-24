@@ -50,7 +50,9 @@
 }
 
 .item-price {}
-
+.form1 > div{
+    display: none;
+}
 .item-button {
     display: flex;
     justify-content: center;

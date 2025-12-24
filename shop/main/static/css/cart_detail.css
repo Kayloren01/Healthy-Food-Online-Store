@@ -9,6 +9,13 @@
     padding-right: 50px;
 }
 
+.block6 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
 .part2 {
     width: 50%;
     padding: 0 15px;
@@ -24,8 +31,16 @@
 
 .phone {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 24px;
+    
+}
+
+.email {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .text4 {
@@ -114,7 +129,7 @@
     justify-content: space-between;
     margin-bottom: 8px;
 
-    button{
+    button {
         background-color: transparent;
         gap: 4px;
         display: flex;
@@ -132,29 +147,40 @@
     padding: 16px 8px;
     border-bottom: 2px solid #BCBCC3;
 }
-.el_text{max-width: 360px;}
+
+.el_text {
+    max-width: 360px;
+}
+
 .el_link {
     margin-right: 16px;
 }
+
 .el_block {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.underblock1{
+
+.underblock1 {
     display: flex;
     justify-content: space-between;
 
-    button{
+    button {
         background-color: transparent;
         width: 20px;
         height: 20px;
     }
 }
-.underblock2{
+
+.underblock2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.selector{
+
+.selector {
     display: flex;
     width: 126px;
     height: 32px;
@@ -162,13 +188,14 @@
     border-radius: 8px;
 }
 
-.selector button{
+.selector button {
     width: 30px;
     height: 32px;
     background-color: transparent;
-  
+
 }
-.selector div{
+
+.selector div {
     display: flex;
     flex-direction: column;
     justify-content: center;
