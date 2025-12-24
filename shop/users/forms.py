@@ -100,7 +100,7 @@ class CustomUserUpdateForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'input-register form-control', 'placeholder': 'Имя'})
     )
     last_name = forms.CharField(
-        required=True,
+        required=False,
         max_length=50,
         widget=forms.TextInput(attrs={'class': 'input-register form-control', 'placeholder': 'Your last name'})
     )
@@ -122,7 +122,7 @@ class CustomUserUpdateForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'input-register form-control', 
                                                 'placeholder': 'Your last name'}),
             'address1': forms.TextInput(attrs={'class': 'input-register form-control', 
-                                               'placeholder': 'Address line 1'}),
+                                               'placeholder': 'Адрес'}),
             'address2': forms.TextInput(attrs={'class': 'input-register form-control', 
                                                'placeholder': 'Address line 2'}),
             'city': forms.TextInput(attrs={'class': 'input-register form-control', 

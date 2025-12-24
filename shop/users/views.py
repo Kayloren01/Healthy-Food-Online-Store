@@ -15,7 +15,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
-    
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -37,15 +37,13 @@ def profile_views(request):
 @login_required
 def account_details(request):
     user = CustomUser.objects.get(id=request.user.id)
-    return render(request, 'account_details.html',
-                  {'user': user})
+    return render(request, 'account_details.html', {'user': user})
 
 
 @login_required
 def edit_account_details(request):
     form = CustomUserUpdateForm(instance=request.user)
-    return render(request, 'edit_account_details.html', 
-                  {'user': request.user, 'form': form})
+    return render(request, 'edit_account_details.html', {'user': request.user, 'form': form})
 
 
 @login_required
@@ -54,14 +52,14 @@ def update_account_details(request):
         form = CustomUserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             user = form.save(commit=False)
-            user.clean()  
+            user.clean()
             user.save()
-            return render(request, 'users/partials/account_details.html', {'user': user})
+            return render(request, 'profile.html', {'user': user})
         else:
-            return render(request, 'users/partials/edit_account_details.html', {'user': request.user, 'form': form})
-    return render(request, 'account_details.html', {'user': request.user})
-     
-       
+            return render(request, 'edit_account_details.html', {'user': request.user, 'form': form})
+    # return render(request, 'users/partials/account_details.html', {'user': request.user})
+
+
 def logout_view(request):
     logout(request)
     return redirect('users:register')

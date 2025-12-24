@@ -59,7 +59,9 @@
 .text_24px {
     font-size: 2.4rem;
 }
-
+.text_32px{
+    font-size: 3.2rem;
+}
 .text_40px {
     font-size: 4.0rem;
 }
@@ -141,7 +143,7 @@ header .wrapper {
 }
 
 main {
-    padding: 100px;
+    padding: 100px 0px;
 }
 
 

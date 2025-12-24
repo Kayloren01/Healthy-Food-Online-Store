@@ -1,3 +1,39 @@
-*{
-    font-size: 1.4rem;
+.block {
+    background-color: #F8F8FA;
+    width: 100%;
+}
+
+
+.block1 {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0px 35px 0px;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.block1-link {
+    position: absolute;
+    margin-left: 72px;
+    width: 31px;
+    height: 30px;
+
+
+}
+
+.block2 {
+    margin-right: 455px;
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.banner {
+    height: 100px;
+    align-self: center;
 }

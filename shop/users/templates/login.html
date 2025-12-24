@@ -3,6 +3,7 @@
 {% block title %}Log In{% endblock %}
 {% block link %}<link rel="stylesheet" href="{% static "css/login.css" %}">{% endblock link %}
 {% block content %}
+<div class="wrapper"> 
     <h1 class='text1 text_40px black weight_700'>Log In</h1>
     <form method="post" class="reg-form">
         {% csrf_token %}
@@ -22,4 +23,5 @@
         <button type="submit" class='text4 text_24px black'>Log In</button>
         <a href="{% url 'users:register' %}" class="link text_16px black">Don't have an account? Register</a>
     </form>
+ </div>
 {% endblock %}

@@ -3,11 +3,12 @@
 {% block title %}Create Account{% endblock %}
 {% block link %}<link rel="stylesheet" href="{% static "css/register.css" %}">{% endblock link %}
 {% block content %}
+<div class="wrapper"> 
     <h1  class='text1 text_40px black weight_700'>Create Account</h1>
     <form method="post" class="reg-form">
         {% csrf_token %}
         
-            <label for="{{ form.first_name.id_for_label }} " class='text2 text_24px black'>First Name</label>
+            <label for="{{ form.first_name.id_for_label }} " class='label text2 text_24px black'>First Name</label>
             {{ form.first_name }}
             {% if form.first_name.errors %}
                 <div class="error">{{ form.first_name.errors }}</div>
@@ -44,7 +45,8 @@
         
         
        
-        <button type="submit">Create</button>
+        <button type="submit" class="link text_16px black">Create</button>
         <a href="{% url 'users:login' %}" class="link text_16px black">Already registered? Log in</a>
     </form>
+ </div>
 {% endblock %}

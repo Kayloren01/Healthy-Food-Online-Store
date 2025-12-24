@@ -3,13 +3,16 @@
 {% block title %}Edit account{% endblock %}
 {% block link %}<link rel="stylesheet" href="{% static "css/edit_account_details.css" %}">{% endblock link %}
 {% block content %}
+<div class="wrapper"> 
     <div class="address-box">
-        <form hx-post="{% url 'users:update_account_details' %}">
+        <form action="{% url 'users:update_account_details' %}" method="post">
             {% csrf_token %}
+            <h1 class="text1 text_40px black weight_700">Обновить информацию</h1>
             {% for field in form %}
-                {% if field.name not in 'email,marketing_consent1,marketing_consent2' %}
+                {% if field.name not in 'email,marketing_consent1,marketing_consent2,address2,city,country,province,postal_code,last_name' %}
                     <div class="form-group">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        
+                        <label for="{{ field.id_for_label }}" class="text2 text_24px black">{{ field.label }}</label>
                         {{ field }}
                         {% if field.errors %}
                             <div class="error">{{ field.errors }}</div>
@@ -17,10 +20,9 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            <div class="button-container">
-                <button type="submit">Update</button>
-                <a href="{% url "users:account_details" %}">Cancel</a>
-            </div>
+                <button type="submit" class="button link text_16px black">Update</button>
+                <a href="{% url "users:profile" %}" class="link text_16px black">Cancel</a>
         </form>
     </div>
+</div>
 {% endblock %}
