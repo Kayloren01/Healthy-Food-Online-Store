@@ -20,7 +20,7 @@
                         <h5 class="item-name text_16px black">{{product.name}}</h5>
                     </a>
                     <p class="item-quantity text_14px grey">ITEM QUANTITY {{product.id}}</p>
-                    <p class="item-price text_16px black">{{product.price}} руб</p>
+                    <p class="item-price text_16px black">{{product.price}} ₽</p>
                     </div>
                     <form action="{% url "cart:cart_add" product.id %}" method="post" class="form1">
                         {{ cart_product_form }}

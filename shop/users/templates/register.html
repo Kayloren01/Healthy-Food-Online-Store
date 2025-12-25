@@ -4,11 +4,11 @@
 {% block link %}<link rel="stylesheet" href="{% static "css/register.css" %}">{% endblock link %}
 {% block content %}
 <div class="wrapper"> 
-    <h1  class='text1 text_40px black weight_700'>Create Account</h1>
+    <h1  class='text1 text_40px black weight_700'>Регистрация</h1>
     <form method="post" class="reg-form">
         {% csrf_token %}
         
-            <label for="{{ form.first_name.id_for_label }} " class='label text2 text_24px black'>First Name</label>
+            <label for="{{ form.first_name.id_for_label }} " class='label text2 text_24px black'>Имя</label>
             {{ form.first_name }}
             {% if form.first_name.errors %}
                 <div class="error">{{ form.first_name.errors }}</div>
@@ -23,20 +23,21 @@
                 <div class="error">{{ form.email.errors }}</div>
             {% endif %}
         
-            <label for="{{ form.password1.id_for_label }}" class='text4 text_24px black'>Password</label>
+            <label for="{{ form.password1.id_for_label }}" class='text4 text_24px black'>Пароль</label>
             {{ form.password1 }}
             {% if form.password1.errors %}
                 <div class="error">{{ form.password1.errors }}</div>
             {% endif %}
         
-            <label for="{{ form.password2.id_for_label }}" class='text5 text_24px black'>Confirm Password</label>
+            <label for="{{ form.password2.id_for_label }}" class='text5 text_24px black'>Подтвердите пароль</label>
             {{ form.password2 }}
             {% if form.password2.errors %}
                 <div class="error">{{ form.password2.errors }}</div>
             {% endif %}
        
-            {{ form.marketing_consent1 }}
+            
             <label for="{{ form.marketing_consent1.id_for_label }}" class='text6 text_12px black'>
+                {{ form.marketing_consent1 }}
                 Я принимаю пользовательское соглашение.
             </label>
             {% if form.marketing_consent1.errors %}
@@ -45,8 +46,8 @@
         
         
        
-        <button type="submit" class="link text_16px black">Create</button>
-        <a href="{% url 'users:login' %}" class="link text_16px black">Already registered? Log in</a>
+        <button type="submit" class="button text_24px black">Зарегистрироваться</button>
+        <a href="{% url 'users:login' %}" class="link text_16px black">Уже зарегистрированы? Войти.</a>
     </form>
  </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 .block {
     display: flex;
-
+    justify-content: center;
 }
 
 .part1 {
@@ -29,11 +29,20 @@
     margin-bottom: 10px;
 }
 
+.link5 {
+    display: block;
+    width: 75px;
+}
+
+#id_quantity {
+    width: 18px;
+}
+
 .phone {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+
 }
 
 .email {
@@ -204,9 +213,26 @@
     height: 32px;
     border-right: 1px solid rgba(255, 255, 255, 0.171);
     border-left: 1px solid rgba(255, 255, 255, 0.171);
+
+    input {
+        text-align: center;
+        background-color: transparent;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: white;
+        pointer-events: none;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
 }
 
-
+.selector .form1>div {
+    display: none;
+}
 
 
 
@@ -214,4 +240,24 @@
     width: 80px;
     height: 80px;
     border-radius: 8px;
+}
+
+.text12 {
+    width: 380px;
+    margin-bottom: 20px;
+}
+
+.block13 {
+    margin-left: 130px;
+
+}
+
+.link {
+    display: block;
+    background-color: #179C49;
+    width: 155px;
+    height: 58px;
+    border-radius: 12px;
+    text-align: center;
+    align-content: center;
 }

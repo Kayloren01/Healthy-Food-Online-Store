@@ -39,4 +39,11 @@
     border-radius: 12px;
 }
 
-.description{max-height: 260px;overflow-y: auto;}
+.form5>div {
+    display: none;
+}
+
+.description {
+    max-height: 260px;
+    overflow-y: auto;
+}

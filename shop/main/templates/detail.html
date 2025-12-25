@@ -17,7 +17,7 @@
                     <p class="item-price text_24px black">{{product.price}} руб</p>
                     
                 </div>
-                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                <form action="{% url "cart:cart_add" product.id %}" method="post" class="form5">
                     {{ cart_product_form }}
                         {% csrf_token %}
                     <button class="item-button">

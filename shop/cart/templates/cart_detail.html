@@ -9,17 +9,25 @@
 {% block content %}
 <div class="wrapper"> 
     <div class='block'>
+        {% if cart.length > 0 %}
         <div class='part1'>
-            <form action="">
+            <form action="{% url "cart:all_remove" %}" method='post'>
+                {% csrf_token %}
                 <h2 class='text1 text_24px black weight_500'>Ваши данные</h2>
                 <div class='block6'>
                     <div class='phone'>
                         <p class='text2 text_16px black weight_500'>Номер телефона</p>
-                        <p class='text_16px black weight_700'>Телефон подставить</p>
+                        {% if user.phone %}
+                            <p class='text_16px black weight_700'>{{user.phone}}</p>
+                        {% else %}
+                            <a href="{% url "users:edit_account_details" %}" class="text_16px black green link5">Добавить</a>
+                        {% endif %}
+
+                        
                     </div>
                     <div class="email">
                         <p class='text4 text_16px black weight_500'>Email для получения чеков</p>
-                        <p class='text_16px black weight_700'>Email</p>
+                        <p class='text_16px black weight_700'>{{user.email}}</p>
                     </div>
                 </div>
                 {% comment %} <p class='text3 text_16px black weight_500'>Способ оплаты</p>
@@ -38,42 +46,49 @@
                 
                 <div class='block1'>
                     <p class='text_16px black'>Доставка</p>
-                    <p class='text_16px black weight_500'>цена</p>
+                    <p class='text_16px black weight_500'>Бесплатная</p>
                 </div>
 
                 <div class='block2'>
                     <p class='text_16px black weight_500'>Общая сумма заказа</p>
-                    <p class='text_16px black weight_500'>цена</p>
+                    <p class='text_16px black weight_500'>{{cart.get_total_price}} ₽ </p>
                 </div>
 
                 <div class='block3'>
                     <div class='text_20px black weight_500'>
                         Адрес доставки
-                        <button class='text_16px green'>Изменить</button>
+                        
+                        <a href="{% url "users:edit_account_details" %}"class='text_16px green'>
+                            {% if  user.address1%}
+                            Изменить
+                            {% else %}
+                            Добавить
+                            {% endif %}
+                            
+                        </a>
                     </div>
-                    <p class='text_16px black'>Адрес подставить</p>
+                    {% if  user.address1%}
+                        <p class='text_16px black'>{{user.address1}}</p>
+                    {% endif %}
                 </div>
                 <label for="detail" class='block4'>
                     <span class='text_14px grey comments'>Комментарий курьеру</span>
                     <textarea class='text_14px' name="" id="" type="text" placeholder='Любые детали, которые важны при доставке'></textarea>
                     
                 </label>
-                <button action='submit' class='button white text_18px'>Заказать за (подставить цену)</button>
+                <button action='submit' class='button white text_18px'>Заказать за {{cart.get_total_price}} ₽</button>
             </div>
         </form>
         <div class='part2'>
-            {% if cart %}
             <h2 class='text1 text_24px black weight_500'>Корзина</h2>
             <div class='block5'>
-                <p class='text_14px weight_500 black'>? шт</p>
+                <p class='text_14px weight_500 black'>{{cart.length}} шт.</p>
                 <form action="{% url "cart:all_remove" %}" method="post">
                     {% csrf_token %}
                     <button type="submit"><span class='text_14px grey'>Очистить корзину</span> <svg  fill='#707070'width='16' height='16' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="7d1f1736-119e-450d-9d5d-85535ad17ef3" viewBox="0 0 24 24">
             <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"></path>
         </symbol><use href="#7d1f1736-119e-450d-9d5d-85535ad17ef3"></use></svg></button>
-            {% else %}
-            <h2 class='text1 text_24px black weight_500'>Корзина пуста</h2>
-            {% endif %}
+           
     </form>
             </div>
             <ul class='list'>
@@ -84,7 +99,11 @@
                         </a>
                         <div class='el_block'>
                             <div class='underblock1'>
-                                <p class='text_14px black el_text'>{{item.product.name}}</p>
+                                 <a href="{{item.product.get_absolute_url}}" >
+                                <p class='text_16px black el_text'>{{item.product.name}}</p>
+                                </a>
+                      
+                    
                                 <form action="{% url "cart:cart_remove" item.product.id %}" method='post' >
                                     {% csrf_token %}
                                     <button type='submit'>
@@ -93,21 +112,29 @@
                                 </form>
                             </div>
                             <div class='underblock2'>
-                                <p class='text_16px full_black'>{{item.price}}</p>
+                                <p class='text_16px full_black weight_600'>{{item.price}} ₽</p>
                                 <div class='selector'>
-                                    <button>
-                                        {% comment %} <svg width='20' height='20' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="7d1f1736-119e-450d-9d5d-85535ad17ef3" viewBox="0 0 24 24">
-        <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"></path>
-    </symbol><use href="#7d1f1736-119e-450d-9d5d-85535ad17ef3"></use></svg> {% endcomment %}
-                                        <svg width="13" height="12" viewBox="0 0 13 12" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M12 6L1 6" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
-                                    </button>
+                                    <form action="{% url "cart:cart_minus" item.product.id %}" method="post" class="form1">
+                                        {{ cart_product_form }}
+                                        {% csrf_token %}
+                                        <button type="submit">
+                                            {% comment %} <svg width='20' height='20' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="7d1f1736-119e-450d-9d5d-85535ad17ef3" viewBox="0 0 24 24">
+            <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"></path>
+        </symbol><use href="#7d1f1736-119e-450d-9d5d-85535ad17ef3"></use></svg> {% endcomment %}
+                                            <svg width="13" height="12" viewBox="0 0 13 12" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M12 6L1 6" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+                                        </button>
+                                    </form>
                                     <div>
-                                        <p class='text_14px weight_500 white'>{{item.update_quantity_form.quantity}}</p>
-                                        <p class='text_10px' style="color:#BCBCC3">{{item.total_price}}</p>
+                                        <p class='text_14px weight_500 white' >{{item.update_quantity_form.quantity}}шт.</p>
+                                        <p class='text_10px' style="color:#BCBCC3">{{item.total_price}}₽</p>
                                     </div>
-                                    <button>
-                                        <svg width="13" height="14" viewBox="0 0 13 14" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M6.5 1.5V12.5" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                     <path d="M12 7L1 7" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                 </svg>
-                                    </button>
+                                    <form action="{% url "cart:cart_add" item.product.id %}" method="post" class="form1">
+                                        {{ cart_product_form }}
+                                        {% csrf_token %}
+                                        <button>
+                                            <svg width="13" height="14" viewBox="0 0 13 14" fill="white" xmlns="http://www.w3.org/2000/svg">                     <path d="M6.5 1.5V12.5" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                     <path d="M12 7L1 7" stroke="white" stroke-width="1.3024" stroke-linecap="round" stroke-linejoin="round"></path>                 </svg>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +142,15 @@
                 {% endfor %}
                 </ul>
         </div>
+        {% else %}
+        <div>
+            <svg class="VV_EmptyCart2022__Img" width="321" height="250" viewBox="0 0 321 250" fill="none">                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M73.7386 44.1079L95.2256 75.9102L246.539 42.4848L234.108 163.644L97.1473 183.336L48.4854 50.8745L73.7386 44.1079Z" fill="#4BC041"></path>                                 <path d="M176.353 132.113C173.671 140.194 157.948 145.927 152 133.158" stroke="black" stroke-width="3.15831" stroke-miterlimit="10" stroke-linecap="square"></path>                                 <path d="M134.741 110.339C136.855 107.798 139.892 106.202 143.183 105.901C146.474 105.599 149.75 106.618 152.291 108.732C154.831 110.846 156.427 113.883 156.729 117.174C157.03 120.465 156.5 124.5 156.5 124.5C156.5 124.5 141.794 132.395 136.5 128C135.235 126.956 134.05 125.578 133.283 124.129C132.516 122.679 132.044 121.092 131.894 119.459C131.743 117.826 131.917 116.18 132.406 114.614C132.895 113.049 133.688 111.596 134.741 110.339Z" fill="white"></path>                                 <path d="M139.64 117.138C141.598 116.008 142.269 113.504 141.138 111.546C140.008 109.587 137.504 108.916 135.546 110.047C133.587 111.178 132.916 113.681 134.047 115.64C135.178 117.598 137.682 118.269 139.64 117.138Z" fill="black"></path>                                 <path d="M164 123C164 123 162.067 120.205 161.226 117.897C160.385 115.59 160.247 113.085 160.828 110.699C161.41 108.313 162.685 106.152 164.493 104.49C166.302 102.828 168.562 101.739 170.988 101.361C173.415 100.983 175.9 101.332 178.128 102.364C180.356 103.397 182.229 105.066 183.509 107.162C184.79 109.258 185.42 111.686 185.322 114.14C185.127 119 181 121.5 179 122C176.172 122.707 164 123 164 123Z" fill="white"></path>                                 <path d="M168.64 112.138C170.598 111.008 171.269 108.504 170.138 106.546C169.008 104.587 166.504 103.916 164.546 105.047C162.587 106.178 161.917 108.682 163.047 110.64C164.178 112.598 166.682 113.269 168.64 112.138Z" fill="black"></path>                                 <path d="M131.567 188.646C136.515 190.403 139.004 192.519 141.784 198.55C144.112 203.596 142.801 208.624 139.785 213.737C133.22 224.869 114.799 224.761 108.931 213.251C108.382 212.188 107.956 211.065 107.662 209.905C104.775 198.401 119.162 185.953 130.767 188.422C131.038 188.48 131.306 188.554 131.567 188.646Z" fill="#4BC041"></path>                                 <path d="M234.326 200.28C235.936 194.882 235.679 191.387 232.213 185.16C229.315 179.95 223.319 176.462 217.383 176.546C204.455 176.729 191.01 192.679 197.268 205.047C197.842 206.196 198.544 207.276 199.363 208.265C207.502 218.047 228.808 212.732 234.014 201.115C234.136 200.844 234.24 200.565 234.326 200.28Z" fill="#4BC041"></path>                                 <path d="M117.285 107.235L132.797 96" stroke="#1E640F" stroke-width="6"></path>                                 <path d="M196.275 97.8415L180 92.2151" stroke="#1E640F" stroke-width="6"></path>                                 <path d="M114.015 23.431C114.015 23.431 110.834 9.06159 103.365 10.9053C95.8959 12.7499 94.8577 35.4971 108.058 46.6201C108.058 46.6201 123.765 43.7766 129.743 26.2719C134.615 12.0135 117.559 13.6187 114.015 23.431Z" fill="#D61D4C"></path>                                 <path d="M319.575 46.2585L309.692 46.3941C309.692 46.3941 306.249 46.5252 303.682 43.0776C301.114 39.6301 300.295 38.992 300.295 38.992L303.633 37.4919C303.633 37.4919 310.145 37.6827 312.705 39.2925C315.265 40.9023 318.775 43.6696 319.575 46.2585Z" fill="#19A019"></path>                                 <path d="M307.709 51.6345C307.512 54.7265 306.723 57.752 305.385 60.5461L299.312 67.6926C287.299 76.7117 278.958 70.8124 269.913 65.8153C269.913 65.8153 262.206 50.4521 268.178 41.9969C271.863 36.7636 276.687 30.5475 282.802 30.0517C287.8 29.6443 294.662 31.1482 296.729 32.1946C297.186 32.4254 301.357 38.3656 301.916 39.7322C302.285 40.6287 303.529 41.7308 304.736 42.6631C308.326 45.4366 307.709 51.6345 307.709 51.6345Z" fill="#F98026"></path>                                 <path d="M12.0763 170.638C12.0763 170.638 26.1547 170.558 29.0747 169.984C31.9947 169.409 49.178 170.541 49.178 170.541C49.178 170.541 63.6859 174.27 65.3148 191.885C65.3148 191.885 66.4126 206.18 52.5044 211.651C52.5044 211.651 44.9229 215.334 38.0326 213.726L12.1338 181.231L12.0763 170.638Z" fill="#1E640F"></path>                                 <path d="M5.10052 176.031L12.0765 170.638C12.0765 170.638 24.7029 172.549 30.3346 172.359C35.9663 172.168 51.6554 173.844 54.718 182.934C57.7806 192.025 60.3283 201.429 49.859 210.277C42.9013 216.155 35.9348 213.486 35.9348 213.486L16.0219 201.069C16.0219 201.069 8.60319 195.513 6.5167 192.575C3.2738 188.018 0.407131 181.997 5.10052 176.031Z" fill="#A5F04B"></path>                                 <path d="M23.1976 190.37C23.1976 190.37 23.6427 187.767 23.9295 187.439C24.2162 187.112 24.8953 183.359 29.0954 182.976C33.2954 182.592 42.7652 180.928 45.8669 188.867C48.9685 196.807 47.9003 199.348 47.9003 199.348C47.9003 199.348 46.1977 201.624 41.0202 202.791C35.8426 203.958 31.1194 201.079 31.1194 201.079C31.1194 201.079 22.0637 196.62 23.1976 190.37Z" fill="#9F5C4E"></path>                             </svg>
+        </div>
+        <div class="block13">
+            <p class="text_32px black weight_500 text12">Корзина ждёт, пока её наполнят</p>
+            <a href="{% url "main:product_list" %}" class="link text_18px white weight_500">За покупками</a>
+        </div>
+        {% endif %}
     </div>
  </div>
 {% endblock content %}

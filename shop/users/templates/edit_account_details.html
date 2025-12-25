@@ -5,21 +5,32 @@
 {% block content %}
 <div class="wrapper"> 
     <div class="address-box">
+       
         <form action="{% url 'users:update_account_details' %}" method="post">
             {% csrf_token %}
-            <h1 class="text1 text_40px black weight_700">Обновить информацию</h1>
-            {% for field in form %}
-                {% if field.name not in 'email,marketing_consent1,marketing_consent2,address2,city,country,province,postal_code,last_name' %}
-                    <div class="form-group">
+            <h1 class="text1 text_40px black weight_700">Изменение информации</h1>
+           
+               
+                   
                         
-                        <label for="{{ field.id_for_label }}" class="text2 text_24px black">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.errors %}
-                            <div class="error">{{ field.errors }}</div>
-                        {% endif %}
-                    </div>
-                {% endif %}
-            {% endfor %}
+                <label for="{{ form.first_name.id_for_label }}" class='text3 text_24px black'>Имя</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+                <div class="error">{{ form.first_name.errors }}</div>
+            {% endif %}
+        
+            <label for="{{ form.address1.id_for_label }}" class='text4 text_24px black'>Адрес</label>
+            {{ form.address1 }}
+            {% if form.address1.errors %}
+                <div class="error">{{ form.address1.errors }}</div>
+            {% endif %}
+        
+            <label for="{{ form.phone.id_for_label }}" class='text5 text_24px black'>Телефон</label>
+            {{ form.phone }}
+            {% if form.phone.errors %}
+                <div class="error">{{ form.phone.errors }}</div>
+            {% endif %}
+       
                 <button type="submit" class="button link text_16px black">Update</button>
                 <a href="{% url "users:profile" %}" class="link text_16px black">Cancel</a>
         </form>

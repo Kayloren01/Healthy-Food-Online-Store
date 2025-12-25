@@ -1,13 +1,21 @@
 .block {
     background-color: #F8F8FA;
     width: 100%;
+    padding: 10px 0px 35px 0px;
+
+
 }
 
+.block>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .block1 {
     display: flex;
-    gap: 10px;
-    padding: 10px 0px 35px 0px;
+    gap: 25px;
+
 }
 
 .avatar {
@@ -23,9 +31,7 @@
 
 }
 
-.block2 {
-    margin-right: 455px;
-}
+
 
 .logout-link {
     display: flex;
@@ -36,4 +42,11 @@
 .banner {
     height: 100px;
     align-self: center;
+}
+
+
+
+.block11 {
+    display: flex;
+    gap: 10px;
 }

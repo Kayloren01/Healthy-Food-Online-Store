@@ -28,6 +28,10 @@
     font-weight: 500;
 }
 
+.weight_600 {
+    font-weight: 600;
+}
+
 .weight_700 {
     font-weight: 700;
 }
@@ -59,9 +63,11 @@
 .text_24px {
     font-size: 2.4rem;
 }
-.text_32px{
+
+.text_32px {
     font-size: 3.2rem;
 }
+
 .text_40px {
     font-size: 4.0rem;
 }
@@ -105,7 +111,7 @@ header .wrapper {
 }
 
 .header-logo {
-    height: 40px;
+    height: 52px;
     border-radius: 8px;
     border: 1px solid grey;
 }
