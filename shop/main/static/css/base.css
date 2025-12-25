@@ -116,11 +116,30 @@ header .wrapper {
     border: 1px solid grey;
 }
 
-.header-search {
+.search {
+    border-radius: 12px;
+    border: 2px solid #179C49;
+    display: flex;
+    background-color: #179C49;
     width: 783px;
-    height: 46px;
-    background-color: greenyellow;
+    height: 48px;
+
+    input {
+        border-radius: 12px;
+        width: 90%;
+        height: 100%;
+        padding-left: 20px;
+    }
+
+    button {
+        border-bottom-right-radius: 12px;
+        border-top-right-radius: 12px;
+        background-color: #179C49;
+        width: 10%;
+        height: 100%;
+    }
 }
+
 
 .cart-logo {
     width: 42px;

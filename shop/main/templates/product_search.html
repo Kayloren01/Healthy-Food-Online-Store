@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{category.name}}{% else %}Товары{% endif %}
+{% endblock title %}
+
+{% block link %}<link rel="stylesheet" href="{% static "css/product_search.css" %}">{% endblock link %}
+
+{% block content %}
+
+
+{% endblock content %}

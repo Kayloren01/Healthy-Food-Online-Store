@@ -13,8 +13,8 @@
             <div class="part1">
                 <div>
                     <h2 class="item-name text_40px black weight_700">{{product.name}}</h2>
-                    <p class="item-quantity text_14px grey">ITEM QUANTITY</p>
-                    <p class="item-price text_24px black">{{product.price}} руб</p>
+                    <p class="item-quantity text_14px grey">{{product.weight}}</p>
+                    <p class="item-price text_24px black">{{product.price}} {% if  product.weight%}₽/шт{% else %}₽/кг{% endif %}</p>
                     
                 </div>
                 <form action="{% url "cart:cart_add" product.id %}" method="post" class="form5">
@@ -37,6 +37,78 @@
                 <h3 class='black text_24px '>Описание</h3>
                 <p class='description black text_16px'>{{product.description}}</p>
             </div>
+        </div>
+
+        <div class="block2">
+            {% if  product.expiration_date%}
+            <div class="w350">
+                <p class="text_16px black weight_700">Годен</p>
+                <p class="text_16px black">{{product.expiration_date}}</p>
+            </div>
+            {% endif %}
+            {% if  product.producer%}
+            <div class="w350">
+                <p class="text_16px black weight_700">Изготовитель</p>
+                <p class="text_16px black">{{product.producer}}</p>
+            </div>
+            {% endif %}
+            {% if  product.country_of_production%}
+            <div class="w350"> 
+                <p class="text_16px black weight_700">Страна производства</p>
+                <p class="text_16px black">{{product.country_of_production}}</p>
+            </div>
+            {% endif %}
+            {% if product.composition %}
+            <div id="grid-position">
+                <p class="text_16px black weight_700">Состав</p>
+                <p class="text_16px black">{{product.composition}}</p>
+            </div>
+            {% endif %}
+            {% if product.storage_conditions %}
+            <div class="w350">
+                <p class="text_16px black weight_700">Условия хранения</p>
+                <p class="text_16px black">{{product.storage_conditions}}</p>
+            </div>
+            {% endif %}
+            {% if product.brand %}
+            <div class="w350">
+                <p class="text_16px black weight_700">Бренд</p>
+                <p class="text_16px black">{{product.brand}}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="block3">
+            <p class="text_40px black weight_600 text15">Рекомендуем к покупке</p>
+             <ul class="list">
+            {% for product in  related_products%}
+            <li class="item">
+                <a href="{{product.get_absolute_url}}" class='item-img-link'>
+                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                </a>
+                <div>
+                    <div>
+                    <a href="{{product.get_absolute_url}}" >
+                        <h5 class="item-name text_16px black">{{product.name}}</h5>
+                    </a>
+                    <p class="item-quantity text_14px grey">{{product.weight}}</p>
+                    <p class="item-price text_16px black">{{product.price}} {% if  product.weight%}₽/шт{% else %}₽/кг{% endif %}</p>
+                    </div>
+                    <form action="{% url "cart:cart_add" product.id %}" method="post" class="form1">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <button class="item-button" type="submit">
+                            {% comment %} <img src="{% static "img/cart2.svg" %}" alt=""> {% endcomment %}
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="18px" height="18px"viewBox="0 0 24 24"><symbol xmlns="http://www.w3.org/2000/svg" id="a" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7.18 13.534 6.167 7.966h12.216l-2.088 5.568zM4.295 2c.598 0 1.108.432 1.206 1.021l.455 2.729h13.493a1.477 1.477 0 0 1 1.383 1.996L18.19 14.79a1.48 1.48 0 0 1-1.383.959H5.427a.116.116 0 0 1-.114-.095L3.093 3.44C2.956 2.69 3.533 2 4.295 2M15.96 22a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75m-8.75 0a1.875 1.875 0 1 0 0-3.75 1.875 1.875 0 0 0 0 3.75" clip-rule="evenodd"/></symbol><use href="#a"/></svg>
+                            
+                            <span class="text_16px white">В корзину</span>
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        
+        </ul>
         </div>
     </div>
 {% endblock content %}

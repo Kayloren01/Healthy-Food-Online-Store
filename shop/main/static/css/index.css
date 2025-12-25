@@ -7,6 +7,8 @@
     row-gap: 24px;
     background-color: #f9f9f9;
     border-radius: 12px;
+    max-height: 1200px;
+    overflow-y: auto;
 }
 
 .item {
@@ -24,13 +26,13 @@
 }
 
 .item-img-link {
-    
-    height: 40%;
+
+    height: 45%;
 }
 
 .item>div {
-    
-    height: 60%;
+
+    height: 55%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,17 +44,24 @@
 .item-name {
     display: block;
     max-width: 234px;
+    margin-bottom: 5px;
+}
+
+.item-category {
+    margin-bottom: 5px;
 }
 
 .item-quantity {
     margin-top: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .item-price {}
-.form1 > div{
+
+.form1>div {
     display: none;
 }
+
 .item-button {
     display: flex;
     justify-content: center;

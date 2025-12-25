@@ -11,7 +11,16 @@ def product_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
-    return render(request, 'index.html', {'category': category, 'categories': categories, 'products': products[:4],'cart_product_form': cart_product_form})
+    return render(
+        request,
+        'index.html',
+        {
+            'category': category,
+            'categories': categories,
+            'products': products[:4],
+            'cart_product_form': cart_product_form,
+        },
+    )
 
 
 def product_detail(request, id, slug):
@@ -21,7 +30,18 @@ def product_detail(request, id, slug):
     return render(
         request,
         'detail.html',
-        {'product': product, 'related_products': related_products, 
-         'cart_product_form': cart_product_form
-         },
+        {'product': product, 'related_products': related_products[:15], 'cart_product_form': cart_product_form},
     )
+
+
+def product_search(request):
+    if request.method == "POST":
+        cart_product_form = CartAddProductForm()
+        searched = request.POST['searched']
+        searched_products = Product.objects.filter(name__contains=searched)
+        return render(
+            request,
+            'index.html',
+            {'searched': searched, 'products': searched_products, "cart_product_form": cart_product_form},
+        )
+    return render(request, 'index.html')

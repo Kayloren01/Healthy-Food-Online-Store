@@ -11,7 +11,11 @@
     <div class='block'>
         {% if cart.length > 0 %}
         <div class='part1'>
-            <form action="{% url "cart:all_remove" %}" method='post'>
+            <form action="
+            {% if user.phone and user.address1 %}
+            {% url "cart:all_remove" %}
+            {% endif %}
+            " method='post'>
                 {% csrf_token %}
                 <h2 class='text1 text_24px black weight_500'>Ваши данные</h2>
                 <div class='block6'>
@@ -94,7 +98,7 @@
             <ul class='list'>
                 {% for item in cart %}
                     <li class='el'>
-                        <a href="" class='el_link'>
+                        <a href="{{item.product.get_absolute_url}}" class='el_link'>
                             <img src="{{item.product.image.url}}" alt="{{item.product.name}}" class='link_img'>
                         </a>
                         <div class='el_block'>
@@ -112,7 +116,7 @@
                                 </form>
                             </div>
                             <div class='underblock2'>
-                                <p class='text_16px full_black weight_600'>{{item.price}} ₽</p>
+                                <p class='text_16px full_black weight_600'>{{item.price}}{% if  item.product.weight%}₽/шт{% else %}₽/кг{% endif %}</p>
                                 <div class='selector'>
                                     <form action="{% url "cart:cart_minus" item.product.id %}" method="post" class="form1">
                                         {{ cart_product_form }}

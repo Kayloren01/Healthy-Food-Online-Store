@@ -8,6 +8,7 @@
 
 {% block content %}
     <div class="wrapper"> 
+        
         <ul class="list">
             {% for product in  products%}
             <li class="item">
@@ -17,12 +18,17 @@
                 <div>
                     <div>
                     <a href="{{product.get_absolute_url}}" >
-                        <h5 class="item-name text_16px black">{{product.name}}</h5>
+                        <h5 class="item-name text_16px black weight_500">{{product.name}}</h5>
                     </a>
-                    <p class="item-quantity text_14px grey">ITEM QUANTITY {{product.id}}</p>
-                    <p class="item-price text_16px black">{{product.price}} ₽</p>
+                    <p class="item-category text_14px black">{{product.category}}</p>
+                    {% if product.weight %}
+                        <p class="item-quantity text_14px grey">{{product.weight}}</p>
+                    {% endif %}
+                    <p class="item-price text_16px black">
+                        {{product.price}} {% if  product.weight%}₽/шт{% else %}₽/кг{% endif %}
+                    </p>
                     </div>
-                    <form action="{% url "cart:cart_add" product.id %}" method="post" class="form1">
+                    <form action="{% url "cart:cart_add" product.id %}" method="POST" class="form1">
                         {{ cart_product_form }}
                         {% csrf_token %}
                         <button class="item-button" type="submit">
