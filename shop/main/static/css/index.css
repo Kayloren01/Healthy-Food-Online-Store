@@ -9,6 +9,12 @@
     border-radius: 12px;
     max-height: 1200px;
     overflow-y: auto;
+
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }
 
 .item {

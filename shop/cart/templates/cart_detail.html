@@ -21,10 +21,15 @@
                 <div class='block6'>
                     <div class='phone'>
                         <p class='text2 text_16px black weight_500'>Номер телефона</p>
-                        {% if user.phone %}
+                        {% if user.phone  %}
                             <p class='text_16px black weight_700'>{{user.phone}}</p>
                         {% else %}
+                            {% if user.is_authenticated %}
                             <a href="{% url "users:edit_account_details" %}" class="text_16px black green link5">Добавить</a>
+                            {% else %}
+                            <a href="{% url "users:login" %}" class="text_16px black green link5">Добавить</a>
+                            {% endif %}
+
                         {% endif %}
 
                         
@@ -62,14 +67,18 @@
                     <div class='text_20px black weight_500'>
                         Адрес доставки
                         
-                        <a href="{% url "users:edit_account_details" %}"class='text_16px green'>
+                        
                             {% if  user.address1%}
-                            Изменить
+                            <a href="{% url "users:edit_account_details" %}"class='text_16px green'>Изменить</a>
                             {% else %}
-                            Добавить
+                                {% if user.is_authenticated %}
+                                <a href="{% url "users:edit_account_details" %}"class='text_16px green'>Добавить</a>
+                                {% else %}
+                                 <a href="{% url "users:login" %}"class='text_16px green'>Добавить</a>
+                                 {% endif %}
                             {% endif %}
                             
-                        </a>
+                        
                     </div>
                     {% if  user.address1%}
                         <p class='text_16px black'>{{user.address1}}</p>

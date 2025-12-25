@@ -50,9 +50,9 @@
 }
 
 .block2 {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+
     row-gap: 10px;
     margin-bottom: 50px;
 
@@ -61,9 +61,7 @@
     } */
 }
 
-.w350 {
-    max-width: 350px;
-}
+
 
 #grid-position {
     grid-row: span 2;
